@@ -1,0 +1,22 @@
+import smtplib
+
+respuesta=int(input("Desea enviar mas correos Si(1), No(0): "))
+while respuesta==1:
+    destinatario=input("Inserte destinatario: ")
+    titulo=input("Inserte titulo: ")
+    mensaje=input("Inserte mensaje: ")
+
+    server=smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login('raulmiguelardoz@gmail.com','rMMj520*m')
+    #notar que se ha puesto la contraseña pero no he podido 
+    #hacer from decouple import config quizas por problemas de version
+
+    mensaje=f'Subject: {titulo}\n\n{mensaje}'
+
+    server.sendmail('raulmiguelardoz@gmail.com',destinatario,mensaje)    
+    #envio,destinatario,mensaje
+
+    server.quit()
+    print("Correo enviado correctamente\n")
+    respuesta=int(input("Desea enviar mas correos Si(1), No(0): "))
